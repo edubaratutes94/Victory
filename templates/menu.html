@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+    <section class="page-heading" style="background-image: url(/{{ entity.image_deep }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Nuestro Menú</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="dinner-menu"></section>
+ {% for cat in categoria %}
+    <section class="lunch-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="lunch-menu-content">
+                        <div class="row">
+                            {% if forloop.counter|divisibleby:2 %}
+                            <div class="col-md-7">
+                                <h2>Menú de {{ cat.name }}</h2>
+                                <div id="owl-lunch" class="owl-carousel owl-theme owl-lunch">
+                                    {% for prod in cat.product_set.all %}
+                                        <div class="item col-md-12">
+                                            <div class="food-item">
+                                                <img height="133px" src="/{% thumbnail prod.image 230x0 crop %}" alt="">
+                                                <div class="price">${{ prod.price }}</div>
+                                                <div class="text-content">
+                                                    <h4>{{ prod.name }}</h4>
+                                                    <p>{{ prod.descripcion|safe|truncatechars:100 }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="{% if forloop.counter|divisibleby:2 %}left{% else %}right{% endif %}-image">
+                                    <img height="540px" width="363px" src="/{% thumbnail cat.image 600x0 crop %}" alt="">
+                                </div>
+                            </div>
+                            {% else %}
+
+                            <div class="col-md-5">
+                                <div class="{% if forloop.counter|divisibleby:2 %}right{% else %}left{% endif %}-image">
+                                    <img height="540px" width="363px" src="/{% thumbnail cat.image 600x0 crop %}"  alt="">
+                                </div>
+                            </div>
+                                   <div class="col-md-7"  style="margin-top: 35px">
+                                <h2>Menú de {{ cat.name }}</h2>
+                                <div id="owl-lunch" class="owl-carousel owl-theme owl-lunch">
+                                    {% for prod in cat.product_set.all %}
+                                        <div class="item col-md-12">
+                                            <div class="food-item">
+                                                <img height="133px" src="/{% thumbnail prod.image 230x0 crop %}" alt="">
+                                                <div class="price">${{ prod.price }}</div>
+                                                <div class="text-content">
+                                                    <h4>{{ prod.name }}</h4>
+                                                    <p>{{ prod.descripcion|safe|truncatechars:100 }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+    <section class="breakfast-menu">
+    </section>
+
+{% endblock %}
+

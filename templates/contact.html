@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Contactos' %}
+{% endblock %}
+
+    <!--/.header-->
+
+{% block content %}
+    <section class="page-heading" style="background-image: url(/{{ entity.image_deep }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Contáctenos</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"  class="{{ tipo }}">{{ msg }}
+                    <div class="section-heading">
+                        <h2>Mensaje</h2>
+                    </div>
+                    <form id="contact" action="{% url 'contact'%}" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% csrf_token %}
+                                <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Su Nombre..." required="">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="email" type="text" class="form-control" id="email" placeholder="Su Correo..." required="">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Su Teléfono..." >
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Su Mensaje..." required=""></textarea>
+                                </fieldset>
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Enviar Mensaje</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="section-heading contact-info">
+                        <h2>Información de Contactos</h2>
+                        <p>{{ entity.descripcion_contact|safe }}<br><br><em>{{ entity.address }} <br>{{ entity.phone }}</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="map">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="map">
+        <!-- How to change your own map point
+            1. Go to Google Maps
+            2. Click on your location point
+            3. Click "Share" and choose "Embed map" tab
+            4. Copy only URL and paste it within the src="" field below
+        -->
+                        <iframe src="{{ entity.map_addres }}" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

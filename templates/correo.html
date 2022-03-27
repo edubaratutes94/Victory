@@ -1,0 +1,13 @@
+{% load i18n %}
+{% autoescape off %}
+Hola: Se ha realizado una reservación a nombre de: {{ reserva.full_name }}
+
+con Teléfono: {{ reserva.phone }} para {{ reserva.cant_persona }} persona/s
+
+Fecha de la reservación: {{ fecha }}
+
+Gracias por usar nuestro sitio!
+
+{% endautoescape %}
+
+

@@ -1,0 +1,334 @@
+{% load static %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+    Victory HTML CSS Template
+    https://templatemo.com/tm-507-victory
+    -->
+    <title>{{ entity.name }}</title>
+    <meta name="description" content="Victory">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../static/frontend/img/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/fontAwesome.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/hero-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/templatemo-style.css' %}">
+    <link rel="stylesheet" href="{% static 'sweetalert2/sweetalert2.min.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+    <script src="{% static 'frontend/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
+</head>
+
+<body>
+<div class="header">
+    <div class="container">
+        <a href="#" class="navbar-brand scroll-top">{{ entity.name }}</a>
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                    <span class="sr-only">{{ entity.name }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!--/.navbar-header-->
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'menu-list' %}">Nuestro Menú</a></li>
+                    <li><a href="{% url 'blog-list' 1 %}">Blog</a></li>
+                    <li><a href="{% url 'contact' %}">Contactos</a></li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse-->
+        </nav>
+        <!--/.navbar-->
+    </div>
+    <!--/.container-->
+</div>
+<!--/.header-->
+
+
+
+
+{% block content %}
+    <section class="banner" style="background-image: url({{ entity.image_banner_1 }}); padding: 180px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover; width: 100%">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h4 style="color: white">{{ entity.slogan_1 }}</h4>
+                    <h2  style="color: white">{{ entity.slogan_2 }}</h2>
+                    <p style="color: white">{{ entity.slogan_3 }}</p>
+                    <div class="primary-button">
+                        <a href="#" class="scroll-link" data-id="book-table">Ordene ahora mismo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="cook-delecious">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="first-image">
+                        <img style="width: 292.5px; height: 219.767px" src="{% thumbnail entity.image_left 750x0 crop %}" alt="...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cook-content">
+                        <h4>Nuestra Cocina es deliciosa</h4>
+                        <div class="contact-content">
+                            <span>Puede Llamar al:</span>
+                            <h6>{{ entity.phone }}</h6>
+                        </div>
+                        <span>O</span>
+                        <div class="primary-white-button">
+                            <a href="#" class="scroll-link" data-id="book-table">Ordene ahora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="second-image">
+                        <img style="width: 292.5px; height: 219.767px" src="{% thumbnail entity.image_right 750x0 crop %}" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                {% for cat in category %}
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="service-item">
+                            <a>
+                                <img class="img-circle" style="height: 200px; width: 250px" src="{% thumbnail cat.image 750x0 crop %}"
+                                     alt="...">
+                                <h4>{{ cat.name }}</h4>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="book-table" style="background-image: url({{ entity.image_deep }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h2>Reserve su mesa ahora</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-2 col-sm-12">
+                    <div class="left-image">
+                        <img style="width: 360px; height: 310px" src="{% thumbnail entity.image_small 750x0 crop %}" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-10">
+                    <div class="right-info">
+                        <h4>Reservación</h4>
+                        <form id="form-submit" action="." method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input style="margin-top: 0px" name="name" type="name" class="form-control" id="name"
+                                           placeholder="Nombre completo" required="">
+                                </div>
+                                <div class="col-md-6">
+                                    <input style="margin-top: 0px" name="persons" type="persons" class="form-control" id="persons"
+                                           placeholder="# Personas" required="">
+                                </div>
+                                <div class="col-md-7">
+
+                                    <input style="margin-top: 0px" name="datetimes" type="datetime-local" value="datetime" class="datetime" id="datetimes"
+                                           placeholder="Fecha de reserva" required="">
+                                </div>
+                                <div class="col-md-6">
+                                    <input style="margin-top: 0px" name="email" type="email" class="form-control" id="email" placeholder="Email"
+                                           required="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input style="margin-top: 0px" name="phone" type="phone" class="form-control" id="phone"
+                                           placeholder="Telefóno" required="">
+                                </div>
+
+                                <div class="col-md-5">
+                                    <button type="submit" id="form-submit" class="btn">Reservar!!!</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-food">
+        <div class="container">
+            <div class="row">
+                <div class="heading">
+                    <h2>Comida destacada de la semana</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for prod in product %}
+                    <div class="col-md-4">
+                        <div class="food-item">
+                            <h2>{{ prod.category.name }}</h2>
+                            <img style="width: 300px; height: 200px" src="{% thumbnail prod.image 750x0 crop %}" alt="">
+                            <div class="price">${{ prod.price }}</div>
+                            <div class="text-content">
+                                <h4>{{ prod.name }}</h4>
+                                <p>{{ prod.descripcion|safe|truncatechars:150 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <section class="our-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h2>Nuestros Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for blo in blog %}
+                    <div class="col-md-6">
+                        <div class="blog-post">
+                            <img style="height: 255px;width: 277px" src="{% thumbnail blo.image 750x0 crop %}" alt="">
+                            <div class="date">{{ blo.created_at }}</div>
+                            <div class="right-content">
+                                <h4>{{ blo.title }}</h4>
+                                <span>{{ blo.text_autor }}</span>
+                                <p>{{ blo.descripcion|safe|truncatechars:150 }}</p>
+                                <div class="text-button">
+                                    <a href="{% url 'blog-detail' blo.id %}">Leer más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <section class="sign-up" style="background-image: url({{ entity.image_prefooter }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover" >
+        <div class="container">
+        </div>
+    </section>
+{% endblock %}
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p>Copyright &copy; {{ x }} Victory Template</p>
+            </div>
+            <div class="col-md-4">
+                <ul class="social-icons">
+                    {% if entity.face %}
+                        <li><a href="{{ entity.face }}"><i class="fa fa-facebook"></i></a></li>
+                    {% endif %}
+                    {% if entity.twit %}
+                        <li><a href="{{ entity.twit }}"><i class="fa fa-twitter"></i></a></li>
+                    {% endif %}
+                    {% if entity.link %}
+                        <li><a href="{{ entity.link }}"><i class="fa fa-linkedin"></i></a></li>
+                    {% endif %}
+                    {% if entity.inst %}
+                        <li><a href="{{ entity.inst }}"><i class="fa fa-instagram"></i></a></li>
+                    {% endif %}
+                    {% if entity.yout %}
+                        <li><a href="{{ entity.yout }}"><i class="fa fa-youtube"></i></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <a style="font-size: 30px" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="btn"
+                   id="button-newsletter" type="submit">🔝</a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% static 'frontend/js/vendor/jquery-1.11.2.min.js' %}"><\/script>')</script>
+
+<script src="{% static 'frontend/js/vendor/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'frontend/js/plugins.js' %}"></script>
+<script src="{% static 'frontend/js/main.js' %}"></script>
+<script src="{% static 'sweetalert2/sweetalert2.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // navigation click actions 
+        $('.scroll-link').on('click', function (event) {
+            event.preventDefault();
+            var sectionID = $(this).attr("data-id");
+            scrollToID('#' + sectionID, 750);
+        });
+        // scroll to top action
+        $('.scroll-top').on('click', function (event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 'slow');
+        });
+        // mobile nav toggle
+        $('#nav-toggle').on('click', function (event) {
+            event.preventDefault();
+            $('#main-nav').toggleClass("open");
+        });
+    });
+
+    // scroll function
+    function scrollToID(id, speed) {
+        var offSet = 0;
+        var targetOffset = $(id).offset().top - offSet;
+        var mainNav = $('#main-nav');
+        $('html,body').animate({scrollTop: targetOffset}, speed);
+        if (mainNav.hasClass("open")) {
+            mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+            mainNav.removeClass("open");
+        }
+    }
+
+    if (typeof console === "undefined") {
+        console = {
+            log: function () {
+            }
+        };
+    }
+</script>
+{% load sweetify %}
+{% sweetify %}
+</body>
+</html>

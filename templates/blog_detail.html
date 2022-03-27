@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block title %}
+    {% trans 'Blog Detalles' %}
+{% endblock %}
+
+    <!--/.header-->
+
+{% block content %}
+    <section class="page-heading" style="background-image: url(/{{ entity.image_deep }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Blog Detalle</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                <img height="330px" width="502px"  src="/{% thumbnail blog.image 750x0 crop %}" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="section-heading contact-info">
+                        <h2>{{ blog.title }}</h2>
+                        <p>{{ blog.descripcion|safe }}<br><br><em>{{ blog.text_autor }} <br>{{ blog.created_at }}</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

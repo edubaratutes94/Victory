@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block title %}
+    {% trans 'Nuestro Blog' %}
+{% endblock %}
+
+{% block content %}
+    <section class="page-heading" style="background-image: url(/{{ entity.image_deep }}); padding: 80px 0; text-align: center; background-repeat: no-repeat; background-position: center center; background-size: cover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Nuestro Blog</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="blog-page">
+        <div class="container">
+            <div class="row">
+                 {% for blo in page_obj %}
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="blog-item">
+                            <img height="330px"  src="/{% thumbnail blo.image 750x0 crop %}" alt="">
+                        <div class="date">{{ blo.created_at }}</div>
+                        <div class="down-content">
+                            <h4>{{ blo.title }}</h4>
+                            <span>{{ blo.text_autor }}</span>
+                            <p>{{ blo.descripcion|safe|truncatechars:300 }}</p>
+                            <div class="text-button">
+                                <a href="{% url 'blog-detail' blo.id %}">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 {% endfor %}
+
+            </div>
+            <div class="pagination">
+    <span class="page-number">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">&laquo;{% trans 'Anterior' %}</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">{% trans 'Siguiente' %}&raquo;</a>
+                        {% endif %}
+
+    </span>
+            </div>
+
+        </div>
+
+    </section>
+{% endblock %}
+
